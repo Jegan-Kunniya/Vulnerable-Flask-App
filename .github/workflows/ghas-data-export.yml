@@ -32,7 +32,7 @@ jobs:
         if-no-files-found: error
 
     - name: Generate GHAS Metrics Report
-      uses: theztefan/ghas-metric-report
+      uses: theztefan/ghas-metric-report@1.21.1
       env:
         GITHUB_TOKEN: ${{ secrets.GH_API_PAT }}
       with:
