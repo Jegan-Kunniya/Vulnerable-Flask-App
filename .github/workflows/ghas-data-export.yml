@@ -24,19 +24,19 @@ jobs:
         GITHUB_REPORT_SCOPE: 'repository'
         FEATURES: 'all' # valid values: codescanning,secretscanning,dependabot
 
-    # - name: Generate GHAS Metrics Report
-    #   uses: theztefan/ghas-metric-report
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #   with:
-    #     repo: "Vulnerable-Flask-App"
-    #     org: "Jegan-Kunniya"
-    #     features: "dependabot, code-scanning, secret-scanning" # comma separated list of features.
-    #     frequency: "weekly" # "weekly" or "monthly" or "daily"
-
     - name: Upload CSV
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ghas-data
         path: ${{ github.workspace }}/*.csv
         if-no-files-found: error
+
+    - name: Generate GHAS Metrics Report
+      uses: theztefan/ghas-metric-report
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_API_PAT }}
+      with:
+        repo: "Vulnerable-Flask-App"
+        org: "Jegan-Kunniya"
+        features: "dependabot, code-scanning, secret-scanning" # comma separated list of features.
+        frequency: "weekly" # "weekly" or "monthly" or "daily"
