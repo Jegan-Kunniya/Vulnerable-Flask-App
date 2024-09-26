@@ -20,7 +20,7 @@ jobs:
       uses: advanced-security/ghas-to-csv@8c2ad35efb234e8e1bd12efaced0f0609ad8afbb
       # uses: advanced-security/ghas-to-csv@v3
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_PAT: ${{ secrets.GH_API_PAT }}
         GITHUB_REPORT_SCOPE: 'repository'
         FEATURES: 'all' # valid values: codescanning,secretscanning,dependabot
 
