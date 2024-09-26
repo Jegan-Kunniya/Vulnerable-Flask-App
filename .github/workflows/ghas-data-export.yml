@@ -31,12 +31,12 @@ jobs:
         path: ${{ github.workspace }}/*.csv
         if-no-files-found: error
 
-    - name: Generate GHAS Metrics Report
-      uses: theztefan/ghas-metric-report@1.21.1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_API_PAT }}
-      with:
-        repo: "Vulnerable-Flask-App"
-        org: "Jegan-Kunniya"
-        features: "dependabot, code-scanning, secret-scanning" # comma separated list of features.
-        frequency: "weekly" # "weekly" or "monthly" or "daily"
+    # - name: Generate GHAS Metrics Report
+    #   uses: theztefan/ghas-metric-report@1.21.1
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GH_API_PAT }}
+    #   with:
+    #     repo: "Vulnerable-Flask-App"
+    #     org: "Jegan-Kunniya"
+    #     features: "dependabot, code-scanning, secret-scanning" # comma separated list of features.
+    #     frequency: "weekly" # "weekly" or "monthly" or "daily"
