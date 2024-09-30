@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 import jwt
 from jwt.exceptions import DecodeError, MissingRequiredClaimError, InvalidKeyError
 import json
-import hashlib
+from argon2 import PasswordHasher
 import datetime
 import os
 from faker import Faker
@@ -138,7 +138,8 @@ def reg_customer():
         if content:
             username = content['username']
             password = content['password']
-            hash_pass = hashlib.md5(password).hexdigest()
+            ph = PasswordHasher()
+            hash_pass = ph.hash(password)
             new_user = User(username, hash_pass)
             db.session.add(new_user)
             db.session.commit()
