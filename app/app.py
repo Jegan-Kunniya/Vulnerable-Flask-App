@@ -17,6 +17,7 @@ from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop
 import os
 import base64
+import logging
 
 app_port = os.environ.get('APP_PORT', 5050)
 
@@ -270,17 +271,17 @@ def search_customer():
                     print(results)
                     return jsonify(results),200
                 except Exception as e:
-                    template = '''<html>
+                    logging.error("An error occurred: %s", str(e))
+                    return render_template_string('''<html>
                         <head>
                         <title>Error</title>
                         </head>
                         <body>
                         <h1>Oops Error Occurred</h1>
-                        <h3>%s</h3>
+                        <h3>An internal error has occurred!</h3>
                         </body>
                         </html>
-                        ''' % str(e)
-                    return render_template_string(template, dir=dir, help=help, locals=locals), 404
+                        '''), 404
 
 
 @app.route("/xxe")
